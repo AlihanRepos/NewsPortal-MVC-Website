@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "GetShareTable";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2>My Share List</h2>
+
+
+<table  class="table" >
+    <thead>
+        <tr>
+            <th scope="col">
+                News Title
+            </th>
+            <th scope="col">
+                Send User Name
+            </th>
+            <th scope="col">
+                Recive User Name
+            </th>
+            <th scope="col">
+                Share Date
+            </th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        var Title = item.GetType().GetProperty("Title").GetValue(item, null);
+        var UName = item.GetType().GetProperty("UName").GetValue(item, null);
+        var SName = item.GetType().GetProperty("SName").GetValue(item, null);
+        var Date = item.GetType().GetProperty("Date").GetValue(item, null);
+        var NewsShareId = item.GetType().GetProperty("NewsShareId").GetValue(item, null);
+
+
+        <tr>
+            <td >@Title</td>
+            <td>@UName</td>
+            <td>@SName</td>
+            <td>@Date</td>
+
+        </tr>
+
+
+    }
+</table>

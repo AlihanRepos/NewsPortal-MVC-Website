@@ -1,0 +1,63 @@
+﻿@model IEnumerable<object>
+
+@{
+    ViewBag.Title = "MainNewsPopuler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            var Title = item.GetType().GetProperty("Title").GetValue(item, null);
+            var Text = item.GetType().GetProperty("Text").GetValue(item, null);
+            var MultimediaUrl = item.GetType().GetProperty("MultimediaUrl").GetValue(item, null);
+            var Comments = item.GetType().GetProperty("Comments").GetValue(item, null);
+            var NewsCategoryId = item.GetType().GetProperty("NewsCategoryId").GetValue(item, null);
+            var CorpationName = item.GetType().GetProperty("CorpationName").GetValue(item, null);
+            var NewsCastId = item.GetType().GetProperty("NewsCastId").GetValue(item, null);
+            var NewsSourceId = item.GetType().GetProperty("NewsSourceId").GetValue(item, null);
+            var FavoriteCount = item.GetType().GetProperty("FavoriteCount").GetValue(item, null);
+            var NewsDate = item.GetType().GetProperty("NewsDate").GetValue(item, null);
+
+            <div class="col-6">
+                <div class="card" style="width:100%;margin-top:15px;">
+                    <img src="~/Images/NewsImages/@MultimediaUrl" class="card-img-top" alt="MultimediaUrl">
+                    <div class="card-body">
+                        <h3 class="card-title">@Title</h3>
+                        <p class="card-text">@Text.ToString().Substring(0, 200) ....</p>
+                        <form method="post" action="/NewsCasts/MainNewsAllDetail">
+                            <input type="hidden" name="NewsCastId" value="@NewsCastId" />
+                            <button class="btn btn-danger" type="submit">Go Details,Comments and Shares</button>
+                        </form>
+                        <br />
+                        <div style="padding:10px; border:solid black 1px;border-radius:5px 5px ;display:inline-block;margin-bottom:20px;">
+                            <h6><b> Source</b></h6> <span>  @CorpationName</span>
+                        </div>
+                        <div>
+                            <span class="material-symbols-outlined">
+                                favorite
+                            </span>
+                                @FavoriteCount
+                        </div>
+                        <div style="display:inline-block;">
+                            <span class="material-symbols-outlined">
+                                schedule
+                            </span>
+                            @NewsDate
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        }
+    </div>
+</div>
+

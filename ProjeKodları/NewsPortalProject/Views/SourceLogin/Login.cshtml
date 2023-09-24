@@ -1,0 +1,51 @@
+﻿@model NewsPortalProject.Models.NewsSource
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+
+
+<center>
+
+    <div class="card" style="display:inline-block;padding:50px;margin-top:50px">
+        <div class="card-title"> <h3>SOURCE LOGIN</h3>  </div>
+        @using (Html.BeginForm())
+        {
+
+
+
+            <div id="errorMessage" class="text-danger"></div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CorpationName, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.CorpationName, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.CorpationPassword, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.CorpationPassword, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="LogIn" class="btn btn-default" />
+                </div>
+            </div>
+        }
+    </div>
+
+</center>
+
+<script>
+        var errorMessage = '@ViewBag.ErrorMessage';
+        if (errorMessage.length > 0) {
+            document.getElementById('errorMessage').innerHTML = errorMessage;
+        }
+</script>
+
+
+

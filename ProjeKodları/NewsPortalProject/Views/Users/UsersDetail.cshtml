@@ -1,0 +1,23 @@
+﻿@model  NewsPortalProject.Models.User
+@{
+    ViewBag.Title = "UsersDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>My Profile Detail</h2>
+
+<div class="card" style="width: 18rem;">
+    <img src="~/Images/UserImages/@Model.ImageUrl" width="100" />
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name @Model.Surname</h5>
+        <p class="card-text">
+            <b>Age:</b> @Model.Age <br />
+            <b>Email:</b>@Model.Email <br />
+            <b>Password</b> @Model.Password <br />
+            <b>Update Date</b> @Model.RegisterDate <br />
+
+
+        </p>
+        <a href="~/Users/UsersUpdate" class="btn btn-primary">Update My Profile</a>
+    </div>
+</div>

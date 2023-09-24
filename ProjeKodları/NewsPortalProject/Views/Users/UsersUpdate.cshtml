@@ -1,0 +1,60 @@
+﻿@model NewsPortalProject.Models.User
+@{
+    ViewBag.Title = "UsersUpdate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>UsersUpdate</h2>
+<img src="~/Images/UserImages/@Model.ImageUrl" width="100" />
+
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name @Model.Surname</h5>
+        <p class="card-text">
+            <b>Age:</b> @Model.Age <br />
+            <b>Email:</b>@Model.Email <br />
+            <b>Password</b> @Model.Password <br />
+            <b>Update Date</b> @Model.RegisterDate <br />
+
+
+        </p>
+        <a href="~/Users/" class="btn btn-primary">Update My Profile</a>
+    </div>
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="Name" class="form-label">Name</label>
+        <input type="text" name="Name" id="Name" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label for="Surname" class="form-label">Surname</label>
+        <input type="text" name="Surname" id="Surname" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label for="Age" class="form-label">Age</label>
+        <input type="text" name="Age" id="Age" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label for="Email" class="form-label">Email</label>
+        <input type="email" name="Email" id="Email" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label for="Password" class="form-label">Password</label>
+        <input type="password" name="Password" id="Password" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label for="Image" class="form-label">Image</label>
+        <input type="file" name="Image" id="Image" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <button class="btn btn-success"> Submit</button>
+    </div>
+
+
+
+
+
+
+</form>
+

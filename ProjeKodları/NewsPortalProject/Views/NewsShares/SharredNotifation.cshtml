@@ -1,0 +1,36 @@
+﻿
+
+<button type="button" class="btn btn-outline-danger" id="liveToastBtn">Notifications</button>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        @foreach (var item in Model)
+        {
+            var Title = item.GetType().GetProperty("Title").GetValue(item, null);
+            var SName = item.GetType().GetProperty("SName").GetValue(item, null);
+            var SImage = item.GetType().GetProperty("SImage").GetValue(item, null);
+            var Date = item.GetType().GetProperty("Date").GetValue(item, null);
+            var NewsCastId = item.GetType().GetProperty("NewsCastId").GetValue(item, null);
+            <div class="toast-header">
+                <img src="~/Images/UserImages/@SImage" style="width:50px" class="rounded me-2" alt="...">
+                <strong class="me-auto">@SName send to News for you.</strong>
+                <form method="post" action="/NewsCasts/MainNewsAllDetail">
+                    <input type="hidden" name="NewsCastId" value="@NewsCastId" />
+                    <button class="btn" type="submit">Go Details</button>
+                </form>
+                <small> Date:@Date</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                @Title
+            </div>
+           
+               
+      
+          
+
+        }
+    </div>
+</div>
+
+

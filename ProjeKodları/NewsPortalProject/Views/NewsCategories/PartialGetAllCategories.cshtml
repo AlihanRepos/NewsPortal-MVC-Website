@@ -1,0 +1,24 @@
+﻿
+@model  IEnumerable<NewsPortalProject.Models.NewsCategory>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="card" style="padding:20px; margin-top:15px;">
+
+    @foreach (var item in Model)
+    {
+
+        <form method="post" action="/NewsCasts/MainNewsCategory">
+            <input type="hidden" name="NewsCategoryId" id="NewsCategoryId" value="@Html.DisplayFor(modelItem => item.NewsCategoryId)" />
+            <button style="border-radius:4px;margin-top:7px;width:100%" class="btn btn-outline-dark" list-group-item-action list-group-item-dark" type="submit">@Html.DisplayFor(modelItem => item.Category)</button>
+        </form>
+
+    }
+
+</div>
+
+
+

@@ -1,0 +1,62 @@
+﻿@model NewsPortalProject.Models.User
+
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+<div style="padding:10px">
+    <h4>SignUp</h4>
+
+</div>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+
+            <form style="padding:20px;width:100%" method="post" enctype="multipart/form-data">
+
+                <div id="errorMessage"></div>
+                <label for="Name" class="form-label w-100">Name</label><br />
+                <input type="text" class="form-control w-100" name="Name" id="Name" placeholder="" required />
+                <br />
+                <label for="Surname" class="form-label">Surname</label><br />
+                <input type="text" class="form-control" name="Surname" id="Surname" placeholder="" required />
+                <br />
+                <label for="Age" class="form-label">Age</label><br />
+                <input type="number" class="form-control" name="Age" id="Age" placeholder="" required />
+                <br />
+                <label for="Email" class="form-label">Email</label><br />
+                <input type="email" class="form-control" name="Email" id="Email" placeholder="" required />
+                <br />
+                <label for="Password" class="form-label">Password</label><br />
+                <input type="password" class="form-control" name="Password" id="Password" placeholder="" required />
+                <br />
+                <label for="Gender" class="form-label">Gender</label><br />
+                @Html.EnumDropDownListFor(model => model.Gender, htmlAttributes: new { @class = "form-control" })
+                <br />
+                <label for="Image" class="form-label">News Image</label>
+                <input type="file" class="form-control" name="Image" id="Image" placeholder="Image" accept="image/*" />
+                <br />
+
+                <input type="submit" class="btn btn-dark w-100" value="Ekle" />
+            </form>
+
+
+
+        </div>
+        <div class="col-6"></div>
+
+
+
+    </div>
+</div>
+
+
+
+
+<script>
+        var errorMessage = '@ViewBag.ErrorMessage';
+        if (errorMessage.length > 0) {
+            document.getElementById('errorMessage').innerHTML = errorMessage;
+        }
+</script>

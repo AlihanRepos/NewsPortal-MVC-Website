@@ -1,0 +1,76 @@
+﻿@model IEnumerable<object>
+
+@{
+    ViewBag.Title = "MainNewsAllDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@foreach (var item in Model)
+{
+    var Title = item.GetType().GetProperty("Title").GetValue(item, null);
+    var Text = item.GetType().GetProperty("Text").GetValue(item, null);
+    var MultimediaUrl = item.GetType().GetProperty("MultimediaUrl").GetValue(item, null);
+    var Comments = item.GetType().GetProperty("Comments").GetValue(item, null);
+    var NewsCategoryId = item.GetType().GetProperty("NewsCategoryId").GetValue(item, null);
+    var CorpationName = item.GetType().GetProperty("CorpationName").GetValue(item, null);
+    var NewsCastId = item.GetType().GetProperty("NewsCastId").GetValue(item, null);
+    var NewsSourceId = item.GetType().GetProperty("NewsSourceId").GetValue(item, null);
+   
+
+    <div class="card" style="width:100%;margin-top:15px;">
+        <img src="~/Images/NewsImages/@MultimediaUrl" style="height:500px" class="card-img-top" alt="MultimediaUrl">
+        <div class="card-body">
+            <h3 class="card-title">@Title</h3>
+            <p class="card-text">@Text</p>
+            <br />
+            <div style="padding:10px; border:solid black 1px;border-radius:5px 5px ;display:inline-block">
+                <h5><b> Source</b></h5> <span>  @CorpationName</span>
+            </div>
+
+            <hr />
+            <h5><b> Comments</b></h5>
+            @if (Comments != null)
+            {
+                foreach (var comment in (IEnumerable<object>)Comments)
+                {
+                    var Comment = comment.GetType().GetProperty("Comment").GetValue(comment, null);
+                    var CommentUserName = comment.GetType().GetProperty("UserName").GetValue(comment, null);
+                    <p><b>@CommentUserName</b>@Comment</p>
+                }
+            }
+            <form action="~/NewsComments/UserAddNewsComment" method="post">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-3"> <input type="text" name="Comment" class="form-control w-100" style="width:100%" /></div>
+                        <div class="col-6"><button class="btn btn-success" type="submit" style="float:left">Comment</button></div>
+                    </div>
+                </div>
+                <input type="hidden" name="NewsCastId" value="@NewsCastId" />
+
+                <br />
+            </form>
+            <form method="post" action="/NewsFavs/UserFavAdd">
+                <input type="hidden" name="NewsCastId" value="@NewsCastId" />
+                <button class="btn btn-danger" type="submit">Add to Favorites</button>
+            </form>
+            <br />
+            <form method="post" action="/NewsSubscribers/UserAddSubs">
+                <input type="hidden" name="NewsSourceId" value="@NewsSourceId" />
+                <button class="btn btn-primary" type="submit">Subcriber to Source</button>
+            </form>
+            <form action="/NewsShares/ShareToUser" method="post">
+                <input type="email" name="Email"/>
+                <input type="hidden" name="NewsCastId" value="@NewsCastId" />
+                <button class="btn btn-outline-success" type="submit">Share To Friends</button>
+            </form>
+            <form method="post" action="/NewsCasts/SendTweet">
+                <input type="hidden" name="NewsCastId" value="@NewsCastId" />
+                <button class="btn btn-primary" type="submit">Send to Tweet</button>
+            </form>
+        </div>
+    </div>
+
+}

@@ -1,0 +1,27 @@
+﻿@model List<NewsPortalProject.Models.NewsCategory>
+@{
+    ViewBag.Title = "AddNews";
+    Layout = "~/Views/Shared/_Source.cshtml";
+}
+
+<h2>Add News</h2>
+<form style="margin-left:30px"  method="post" enctype="multipart/form-data">
+    <label for="Title">News Title</label>
+    <input class="form-control" type="text" name="Title" id="Title" />
+
+    <label  for="Text">News Text</label>
+    <textarea class="form-control" id="Text" name="Text" rows="4" cols="50">
+     </textarea>
+    <select style="margin-top:10px" class="form-control"  name="NewsCategoryId" id="NewsCategoryId">
+        @foreach (var item in Model)
+        {
+            <option value="@item.NewsCategoryId">@item.Category</option>
+        }
+    </select>
+    <label style="margin-top:10px"  for="Image">News Image</label>
+    <input class="form-control" type="file" name="Image" id="Image" />
+
+    <input style="margin-top:10px" type="submit" class="btn btn-dark w-100" value="AddNews" />
+
+
+</form>
